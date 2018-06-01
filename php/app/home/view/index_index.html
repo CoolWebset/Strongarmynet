@@ -1,0 +1,180 @@
+{include file="common/header"/}
+  <main>
+    <article class="index" data-main="index">
+      <section class="main-container business index-inner">
+        <div class="i_ban swiper-container">
+          <div class="swiper-wrapper">
+            {clt:list_join db='banner' dbfield='catid' id='vo' joindb='category' joinfield='id' where="catid = 43" order="listorder asc,createtime desc" limit='4'}
+            <div class="swiper-slide"><img src="{:imgUrl($vo['thumb'],__HOME__.'/images/portfolio-thumb/p'.$k.'.jpg')}" alt=""></div>
+            {/clt:list_join}
+          </div>
+          <!-- Add Pagination -->
+          <div class="swiper-pagination"></div>
+        </div>
+        <div class="container">
+          <div class="row i_about pad_up">
+            <div class="col-md-12">
+              <div class="i_about_by">
+                <img src="__HOME__/img/w1.png" alt="">
+              </div>
+              <h2>亚布力广电国际酒店</h2>
+              <p>
+                {:getcontent(45)}
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="container-fluid">
+          <div class="row i_cp">
+          {volist name="category" id="vo"}
+            {if condition="$vo['id'] eq 53"}
+              {volist name="$vo.sub" id="v"}
+                <div class="col-xs-12 col-sm-4 reset-pad">
+                  <div class="explore-hotel-type-tile">
+                    <div class="content">
+                      <div class="tile-image">
+                        <img class="lazyload" src="{:imgUrl($v.image)}" alt="{$v.catname}">
+                      </div>
+                      <div class="tile-desc" null="">
+                        <div class="tile-header">
+                          {$v.catname}</div>
+                        <div class="desc-overlay" style="margin-top: -130px;">
+                          <div class="desc">
+                            <p>
+                              {$v.catname}<br>
+                            </p>
+                          </div>
+                          <div class="link">
+                            <a class="" href="{:url('home/'.$vo['catdir'].'/index',['catId'=>$v['id']] )}">查看详细</a>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="clearfix"></div>
+                    </div>
+                  </div>
+                </div>
+              {/volist}
+            {/if}
+          {/volist}
+            <!-- <div class="col-xs-12 col-sm-4 reset-pad">
+              <div class="explore-hotel-type-tile">
+                <div class="content">
+                  <div class="tile-image">
+                    <img class="lazyload" src="__HOME__/img/cp2.jpg" alt="客房服务">
+                  </div>
+                  <div class="tile-desc" null="">
+                    <div class="tile-header">
+                      客房服务</div>
+                    <div class="desc-overlay" style="margin-top: -130px;">
+                      <div class="desc">
+                        <p>
+                          客房服务<br>
+                        </p>
+                      </div>
+                      <div class="link">
+                        <a class="" href="activity.html">查看详细</a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="clearfix"></div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xs-12 col-sm-4 reset-pad">
+              <div class="explore-hotel-type-tile">
+                <div class="content">
+                  <div class="tile-image">
+                    <img class="lazyload" src="__HOME__/img/cp3.jpg" alt="遇见你的洲际人生">
+                  </div>
+                  <div class="tile-desc" null="">
+                    <div class="tile-header">
+                      休闲娱乐</div>
+                    <div class="desc-overlay" style="margin-top: -130px;">
+                      <div class="desc">
+                        <p>
+                          休闲娱乐<br>
+                        </p>
+                      </div>
+                      <div class="link">
+                        <a class="" href="activity.html">查看详细</a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="clearfix"></div>
+                </div>
+              </div>
+            </div> -->
+          </div>
+        </div>
+        <div class="container i_video" id="my">
+          <h2><span>我们的品牌</span></h2>
+          <div class="i_video_bt">
+            <img src="__HOME__/img/w2.png" alt="">
+          </div>
+          <div class="i_video_main">
+            <video>
+              {clt:list_join db='video' dbfield='catid' id='vo' joindb='category' joinfield='id' where="" order="listorder asc,createtime desc" limit='1'}
+                    <source src="__HOME__/media/{$vo.videourl}" type="video/mp4" />
+              {/clt:list_join}
+            </video>
+            <div class="video_fm">
+              <span></span>
+            </div>
+          </div>
+        </div>
+        <div class="container-fluid i_three pad_up">
+          <div class="row">
+            <div class="col-xs-12 col-sm-4">
+              <div class="i_three_g">
+                <div class="i_three_img">
+                  <img src="__HOME__/img/th1.jpg" alt="">
+                </div>
+                <div class="i_three_bt">
+                  会员计划
+                </div>
+                <p>
+                  加入亚布力广电国际酒店会员，尊享会员服务体验更多惊喜。
+                </p>
+                <div class="i_three_an">
+                  <a class="btn btn-primary btn-sm" href="/vip.html">了解更多+</a>
+                </div>
+              </div>
+            </div>
+            <div class="col-xs-12 col-sm-4">
+              <div class="i_three_g">
+                <div class="i_three_img">
+                  <img src="__HOME__/img/th2.jpg" alt="">
+                </div>
+                <div class="i_three_bt">
+                  优质价格
+                </div>
+                <p>
+                  我们可以为您提供最优惠的价格。
+                </p>
+                <div class="i_three_an">
+                  <a class="btn btn-primary btn-sm" href="/vip.html">了解更多+</a>
+                </div>
+              </div>
+            </div>
+            <div class="col-xs-12 col-sm-4">
+              <div class="i_three_g">
+                <div class="i_three_img">
+                  <img src="__HOME__/img/th3.jpg" alt="">
+                </div>
+                <div class="i_three_bt">
+                  酒店图片
+                </div>
+                <p>
+                  品鉴酒店真实环境
+                </p>
+                <div class="i_three_an">
+                  <a class="btn btn-primary btn-sm" href="/picture_48.html">了解更多+</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </article>
+  </main>
+{include file="common/footer"/}
