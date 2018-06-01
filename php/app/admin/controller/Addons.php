@@ -22,7 +22,6 @@ class Addons extends Common
           $pageSize =input('limit')?input('limit'):config('pageSize');
           $list = $this -> getDir(ADDONS_PATH);
           $count = count($list);
-          // dump($list);
           foreach ($list as $key => $value) {
             $class          =   get_addon_class($value);
             if(!class_exists($class)){
