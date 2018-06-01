@@ -1,4 +1,4 @@
-# cool-static-cli(Webpack 4 for multipage static websites)
+# Strongarmynet
 * HTML (lodash template)
 * Modern JavaScript
 * SCSS
