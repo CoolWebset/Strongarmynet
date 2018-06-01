@@ -85,7 +85,7 @@ class Addons extends Common
         exit;
       }
       session('addons_install_error',null);
-      $install_flag   =   $addons->install();
+      $install_flag   =   $this->dosqlfile(ADDONS_PATH.$addonsName.'/install.sql');
       if(!$install_flag){
           $result['msg'] = '执行插件预安装操作失败'.session('addons_install_error');
           $result['code'] = 0;
@@ -145,14 +145,15 @@ class Addons extends Common
       }
       session('addons_uninstall_error',null);
       $addons =   new $class;
-      $uninstall_flag =   $addons->uninstall();
+      $uninstall_flag =  $this->dosqlfile(ADDONS_PATH.$addonsName.'/uninstall.sql');
+      // dump($uninstall_flag);exit;
       if(!$uninstall_flag){
         $result['msg'] = '执行插件预卸载操作失败'.session('addons_uninstall_error');
         $result['code'] = 0;
         return $result;
         exit;
       }
-      $hooks_update   =  db('addons')->where('name',$addonsName)->delete();;
+      $hooks_update   =  db('addons')->where('name',$addonsName)->delete();
       if($hooks_update === false){
         $result['msg'] = '插件卸载失败!';
         $result['code'] = 0;
@@ -231,6 +232,23 @@ class Addons extends Common
             }
         }
         return false;
+    }
+    /**
+     * 执行sql文件
+     * @param  [type] $file [文件名]
+     * @return [type]       [description]
+     */
+    private function dosqlfile($file)
+    {
+      $_sql = file_get_contents($file);
+      $_arr = explode(';', $_sql);
+      $num = 0;
+      unset($_arr[count($_arr)-1]);
+      // dump($_arr);exit;
+      foreach ($_arr as $_value) {
+        $res = db()->query($_value.';');
+      }
+      return true;
     }
 
 }

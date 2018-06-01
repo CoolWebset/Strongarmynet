@@ -9,7 +9,7 @@
 // | Author: Byron Sampson <xiaobo.sun@qq.com>
 // +----------------------------------------------------------------------
 
-namespace addons\memberform\controller;
+namespace addons\answer\controller;
 
 use think\addons\Controller;
 use think\Db;
@@ -26,10 +26,10 @@ class Admin extends Controller
     }
     public function index()
     {
-      $authRule = cache('memberform_authRule');
+      $authRule = cache('answer_authRule');
         if(!$authRule){
-            $authRule = db('memberform_category')->where('menustatus=1')->order('sort')->select();
-            cache('memberform_authRule', $authRule, 3600);
+            $authRule = db('answer_category')->where('menustatus=1')->order('sort')->select();
+            cache('answer_authRule', $authRule, 3600);
        }
 
         //声明数组
@@ -64,18 +64,18 @@ class Admin extends Controller
       $start = strtotime(date('Y-m-d 00:00:00'));
       $end = strtotime(date('Y-m-d H:i:s'));
       // 客房
-      $kefangsql = "SELECT count(*) as kfnum FROM `cool_memberform` WHERE `addtime` >= $start AND `addtime` <= $end";
+      $kefangsql = "SELECT count(*) as kfnum FROM `cool_answer` WHERE `addtime` >= $start AND `addtime` <= $end";
       // echo $kefangsql; exit;
       $kefangnum = Db::query($kefangsql);
       $kfnum = $kefangnum[0]['kfnum'];
       // 会议
-      $huiyisql = "SELECT count(*) as hynum FROM `cool_memberform`";
+      $huiyisql = "SELECT count(*) as hynum FROM `cool_answer`";
       // echo $huiyisql; exit;
       $huiyinum = Db::query($huiyisql);
       $hynum = $huiyinum[0]['hynum'];
 
       $stattime = strtotime(date("Y-m-d"), time());
-      $shijianxian = Db::query("select date(from_unixtime(addtime)) as riqi, count(*)as uvnum from cool_memberform where from_unixtime(addtime) >= date(now()) - interval 7 day group by day(from_unixtime(addtime));");
+      $shijianxian = Db::query("select date(from_unixtime(addtime)) as riqi, count(*)as uvnum from cool_answer where from_unixtime(addtime) >= date(now()) - interval 7 day group by day(from_unixtime(addtime));");
       $riqistr = '';
       $pvstr = '';
       $uvstr = '';
@@ -98,7 +98,7 @@ class Admin extends Controller
         $type = Input('type');
         $page =input('page')?input('page'):1;
         $pageSize =input('limit')?input('limit'):config('pageSize');
-        $list = db('memberform')->paginate(array('list_rows'=>$pageSize,'page'=>$page))
+        $list = db('answer')->paginate(array('list_rows'=>$pageSize,'page'=>$page))
         ->toArray();
 
         $rsult['code'] = 0;

@@ -34,7 +34,6 @@ class Diyform extends Addons
      */
     public function install()
     {
-      $this->dosqlfile(ADDONS_PATH.'diyform/install.sql');
       return true;
     }
 
@@ -43,7 +42,6 @@ class Diyform extends Addons
      * @return bool
      */
      public function uninstall(){
-        $this->dosqlfile(ADDONS_PATH.'diyform/uninstall.sql');
         return true;
      }
 

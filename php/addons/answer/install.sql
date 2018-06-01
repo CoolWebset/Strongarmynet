@@ -1,4 +1,4 @@
-DROP TABLE IF EXISTS `cool_memberform`;CREATE TABLE `cool_memberform` (
+DROP TABLE IF EXISTS `cool_answer`;CREATE TABLE `cool_answer` (
   `message_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(200) DEFAULT '',
   `phone` varchar(60) NOT NULL DEFAULT '' COMMENT '电话号码',
@@ -7,7 +7,7 @@ DROP TABLE IF EXISTS `cool_memberform`;CREATE TABLE `cool_memberform` (
   `birsthday` int(60),
   PRIMARY KEY (`message_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
-DROP TABLE IF EXISTS `cool_memberform_category`;CREATE TABLE `cool_memberform_category` (
+DROP TABLE IF EXISTS `cool_answer_category`;CREATE TABLE `cool_answer_category` (
   `id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
   `href` char(80) NOT NULL DEFAULT '',
   `title` char(20) NOT NULL DEFAULT '',
@@ -23,4 +23,4 @@ DROP TABLE IF EXISTS `cool_memberform_category`;CREATE TABLE `cool_memberform_ca
   `menustatus` tinyint(1) DEFAULT NULL,
   `catid` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=301 DEFAULT CHARSET=utf8;INSERT INTO `cool_memberform_category` VALUES ('1', '/addons_execute_memberform-admin-index', '会员管理', '1', '1', '0', 'icon-cogs', '', '0', '0', '1446535750', '1', '1', null);INSERT INTO `cool_memberform_category` VALUES ('2', '/addons_execute_memberform-admin-yuding?type=1', '会员管理', '1', '1', '0', '', '', '1', '1', '1446535789', '1', '1', null);
+) ENGINE=MyISAM AUTO_INCREMENT=301 DEFAULT CHARSET=utf8;INSERT INTO `cool_answer_category` VALUES ('1', '/addons_execute_answer-admin-index', '会员管理', '1', '1', '0', 'icon-cogs', '', '0', '0', '1446535750', '1', '1', null);INSERT INTO `cool_answer_category` VALUES ('2', '/addons_execute_answer-admin-yuding?type=1', '会员管理', '1', '1', '0', '', '', '1', '1', '1446535789', '1', '1', null);
